@@ -30,6 +30,12 @@ signInButton.addEventListener('click', function (e) {
 
 firebase.auth().onAuthStateChanged(function (firebaseUser) {
     if (firebaseUser) {
+        playgroundRef.on('value', function (snap) {
+            playground.innerText = snap.val();
+        });
+        dbRef.on('value', function (snap) {
+            header.innerText = snap.val();
+        });
         console.log('The current user is: ', firebaseUser);
     } else {
         header.innerText = 'Log in using Google!';
